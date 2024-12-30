@@ -22,9 +22,8 @@ ifdef ARCH_LIN
 	LDFLAGS +=$(shell $(PKGCONFIG) --libs $(PACKAGES))
 endif
 
-	LDFLAGS +=$(shell $(PKGCONFIG) --variable=libdir libusb-1.0)/libusb-1.0.a
-	LDFLAGS +=$(shell $(PKGCONFIG) --variable=libdir librtlsdr)/librtlsdr.a
 ifdef ARCH_MAC
+	LDFLAGS +=$(shell $(PKGCONFIG) --libs libusb-1.0 librtlsdr)
 endif
 
 ifdef ARCH_WIN
