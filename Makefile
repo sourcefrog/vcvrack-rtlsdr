@@ -17,17 +17,17 @@ include $(RACK_DIR)/arch.mk
 
 # Careful about linking to libraries, since you can't assume much about the user's environment and library search path.
 # Static libraries are fine.
-ifeq ($(ARCH), lin)
+ifdef ARCH_LIN
 	# WARNING: static compilation is broken on Linux
 	LDFLAGS +=$(shell $(PKGCONFIG) --libs $(PACKAGES))
 endif
 
-ifeq ($(ARCH), mac)
 	LDFLAGS +=$(shell $(PKGCONFIG) --variable=libdir libusb-1.0)/libusb-1.0.a
 	LDFLAGS +=$(shell $(PKGCONFIG) --variable=libdir librtlsdr)/librtlsdr.a
+ifdef ARCH_MAC
 endif
 
-ifeq ($(ARCH), win)
+ifdef ARCH_WIN
 	LDFLAGS +=$(shell $(PKGCONFIG) --variable=libdir librtlsdr)/librtlsdr_static.a
 	LDFLAGS +=$(shell $(PKGCONFIG) --variable=libdir libusb-1.0)/libusb-1.0.a
 endif
