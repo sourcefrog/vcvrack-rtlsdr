@@ -2,3 +2,6 @@ dist
 build
 *.dylib
 /vcpkg_installed/
+plugin.so
+plugin.dll
+plugin.a
